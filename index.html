@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prep. — competitive exam planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="top">
+    <h1>Prep<span class="pen">.</span></h1>
+    <p class="sub">plan it, fill the bubbles, beat the clock</p>
+  </header>
+
+  <!-- COUNTDOWN -->
+  <section class="card hero">
+    <div class="hero-fields">
+      <label>Exam
+        <input type="text" id="examName" placeholder="e.g. JEE Main, NEET, UPSC Prelims" maxlength="40">
+      </label>
+      <label>Exam date
+        <input type="date" id="examDate">
+      </label>
+    </div>
+
+    <div class="hero-main">
+      <div class="days-left">
+        <span class="days-num" id="daysNum">—</span>
+        <span class="days-word" id="daysWord">days to go</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="overallPct">0%</span><span class="stat-lbl">syllabus done</span></div>
+        <div class="stat"><span class="stat-num" id="paceNum">—</span><span class="stat-lbl">topics / week needed</span></div>
+      </div>
+    </div>
+    <p class="pace-note" id="paceNote">Set your exam date and add subjects to see the pace you need.</p>
+  </section>
+
+  <!-- SYLLABUS -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Syllabus</h2>
+      <span class="muted" id="topicTally">0 / 0 topics</span>
+    </div>
+
+    <div class="add-row">
+      <input type="text" id="subjectInput" placeholder="Add a subject (e.g. Physics)" maxlength="40">
+      <button class="btn" id="addSubjectBtn">Add subject</button>
+    </div>
+    <div class="templates" id="templates">
+      <span class="muted">Quick start:</span>
+      <button class="chip" data-tpl="Physics,Chemistry,Mathematics">JEE</button>
+      <button class="chip" data-tpl="Physics,Chemistry,Biology">NEET</button>
+      <button class="chip" data-tpl="Polity,History,Geography,Economy,Environment,Current Affairs">UPSC</button>
+      <button class="chip" data-tpl="Quant,Reasoning,English,General Awareness">Banking / SSC</button>
+      <button class="chip" data-tpl="Quant,Verbal,DILR">CAT</button>
+    </div>
+
+    <div id="subjectList"></div>
+    <p class="empty" id="subjectEmpty">No subjects yet. Add one above, or use a quick start.</p>
+  </section>
+
+  <!-- STUDY LOG -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Study log</h2>
+      <span class="muted" id="streakLabel">streak: 0 days</span>
+    </div>
+
+    <div class="today-row">
+      <div>
+        <div class="today-time" id="todayTime">0h 00m</div>
+        <div class="muted">studied today</div>
+      </div>
+      <label class="target">Daily target (hrs)
+        <input type="number" id="targetInput" min="1" max="16" step="0.5" value="4">
+      </label>
+    </div>
+    <div class="meter big"><i id="todayMeter" style="width:0%"></i></div>
+
+    <div class="quick-add">
+      <button class="chip" data-add="15">+15m</button>
+      <button class="chip" data-add="30">+30m</button>
+      <button class="chip" data-add="60">+1h</button>
+      <button class="chip" data-add="-15">−15m</button>
+    </div>
+
+    <svg id="studyChart" viewBox="0 0 560 150" role="img" aria-label="Study time over the last 14 days"></svg>
+  </section>
+
+  <!-- MOCK TESTS -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Mock tests</h2>
+      <span class="muted" id="mockSummary">no tests yet</span>
+    </div>
+
+    <div class="mock-form">
+      <input type="text" id="mockName" placeholder="Test name" maxlength="30">
+      <input type="date" id="mockDate">
+      <input type="number" id="mockScore" placeholder="Score" step="any">
+      <input type="number" id="mockMax" placeholder="Out of" step="any" value="300">
+      <button class="btn" id="addMockBtn">Log</button>
+    </div>
+
+    <svg id="mockChart" viewBox="0 0 560 170" role="img" aria-label="Mock test scores over time"></svg>
+    <ul class="mock-list" id="mockList"></ul>
+  </section>
+
+  <!-- BACKUP -->
+  <section class="card slim">
+    <div class="card-head"><h2>Backup</h2></div>
+    <p class="muted">Your data lives only in this browser. Export a copy now and then.</p>
+    <div class="backup-row">
+      <button class="btn ghost" id="exportBtn">Export JSON</button>
+      <label class="btn ghost file-btn">Import JSON
+        <input type="file" id="importFile" accept="application/json" hidden>
+      </label>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
