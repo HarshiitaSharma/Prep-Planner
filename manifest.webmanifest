@@ -1,0 +1,9 @@
+{
+  "name": "Prep. — competitive exam planner",
+  "short_name": "Prep",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F6F8FC",
+  "theme_color": "#1B2559",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
